@@ -8,6 +8,7 @@ body {
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 3rem;
+  color:
 }
 
 main {
@@ -20,6 +21,7 @@ main {
 
 h1 {
   margin-bottom: 0.5rem;
+  font-size: xx-large;
 }
 
 h2 {
@@ -43,4 +45,11 @@ section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
+}
+
+button {
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
 }
