@@ -2,15 +2,20 @@ const apiKey = 'AIzaSyBbbs2BCwpGxotzbHMt0AHAm6yGkBfSwig'
 
 
 //Query selectors
-const h1 = document.querySelector('h1');
-const fontOneLink = document.querySelector('#fontOneLink');
+const h = document.querySelectorAll('.h');
+const hFontLink = document.querySelector('#hFontLink');
+
+const p = document.querySelectorAll('p');
+const pFontLink = document.querySelector('#pFontLink');
+
+const button = document.querySelectorAll('button');
 
 setFonts()
 
 
 async function getFonts() {
   try {
-    const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}`)
+    const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&subset=latin`)
     const result = await response.json()
     const fontList = result.items;
     return fontList
@@ -22,33 +27,36 @@ async function getFonts() {
 
 async function fontSelection() {
   const fontList = await getFonts();
-  console.log(fontList.length)
+
   const randomNumberOne = Math.floor(Math.random() * fontList.length);
-  const randomNumberTwo = Math.floor(Math.random() * fontList.length);
-  const fontOne = fontList[randomNumberOne];
-  const fontTwo = fontList[randomNumberTwo];
+  const hFont = fontList[randomNumberOne];
+
+  const pFontList = fontList.filter((font) => font.category === 'serif' || font.category === 'sans-serif');
+  const randomNumberTwo = Math.floor(Math.random() * pFontList.length);
+  const pFont = pFontList[randomNumberTwo];
+
   return {
-    fontOne: fontOne,
-    fontTwo: fontTwo
+    hFont: hFont,
+    pFont: pFont
   }
 
 }
 
 async function setFonts() {
   const fonts = await fontSelection();
-  const fontOne = fonts.fontOne
-  const fontTwo = fonts.fontTwo;
-  console.log(fontOne, 'fontOne');
-  console.log(fontTwo, 'fontTwo');
-  let fontOneUrl = fontOne.family.replace(/\s/g, '+');
 
-  console.log(fontOneUrl);
+  const hFont = fonts.hFont
+  const hFontUrl = hFont.family.replace(/\s/g, '+');
+  hFontLink.setAttribute("href", `https://fonts.googleapis.com/css2?family=${hFontUrl}`)
+  h.forEach(element => element.setAttribute('style', `font-family: '${hFont.family}'`))
 
-  fontOneLink.setAttribute("href", `https://fonts.googleapis.com/css2?family=${fontOneUrl}`)
 
-  console.log(`<link id="fontOneLink" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=${fontOneUrl}"></link>`)
+  const pFont = fonts.pFont;
+  const pFontUrl = pFont.family.replace(/\s/g, '+');
 
-  h1.setAttribute('style', `font-family: '${fontOne.family}'`)
+  pFontLink.setAttribute("href", `https://fonts.googleapis.com/css2?family=${pFontUrl}`);
+
+  p.forEach(element => element.setAttribute('style', `font-family: '${pFont.family}'`));
+  button.forEach(element => element.setAttribute('style', `font-family: '${pFont.family}'`));
+
 }
-
-style = "font-family: 'Courier New', Courier, monospace;"

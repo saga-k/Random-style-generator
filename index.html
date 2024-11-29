@@ -9,15 +9,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" id="fontOneLink">
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playwrite+HR">
+  <link rel="stylesheet" id="hFontLink">
+  <link rel="stylesheet" id="pFontLink">
+
 </head>
 
 <body>
   <main>
     <article id="hero">
-      <h1>This is a demo of the random
+      <h1 class="h">This is a demo of the random
         style generator</h1>
       <p>The inspiration for this project came from an idea i had for my portfolio website.
         I wanted to create about 10 different stylesheets and loop through them at the click of a button.
@@ -31,12 +32,12 @@
     </article>
 
     <article id="myProcess">
-      <h2>My process</h2>
+      <h2 class="h">My process</h2>
 
       <div id="cards">
 
         <section class="card" id="boundaries">
-          <h3>Setting some boundaries</h3>
+          <h3 class="h">Setting some boundaries</h3>
           <p>Because i want you reading this to be able to read it.
             I had to set some boundaries around which combinatons are allowed.
             As a designer i have some i have some experience around what works and what doesnt when it comes to
@@ -44,14 +45,14 @@
         </section>
 
         <section class="card" id="lightOrDark">
-          <h3>Light or dark</h3>
+          <h3 class="h">Light or dark</h3>
           <p>To avoid getting dark text on a dark background or vice versa i wanted my program to first select a light
             mode
             or a dark mode. </p>
         </section>
 
         <section class="card" id="colorPallate">
-          <h3>Creating a color pallate</h3>
+          <h3 class="h">Creating a color pallate</h3>
           <p>For a color pallate i want 2 background colors of the same hue but with different lightness.
             I also want a more saturated color for details such as buttons, icons and other elements.
             By using HSL values when generating the pallate i can control the saturation and lightness while letting
@@ -62,7 +63,7 @@
 
 
         <section class="card" id="fonts">
-          <h3>Adding fonts</h3>
+          <h3 class="h">Adding fonts</h3>
           <p>By using the google fonts API i can acces the entire
             google fonts library and fetch anyfonts from there.
             For readability i'll only allow p elements to be serif or sans serif fonts.
