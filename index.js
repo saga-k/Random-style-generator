@@ -1,6 +1,5 @@
 const apiKey = 'AIzaSyBbbs2BCwpGxotzbHMt0AHAm6yGkBfSwig'
 
-
 //Query selectors start---------------------------------------------------------
 
 const h = document.querySelectorAll('.h');
@@ -158,7 +157,7 @@ function generateLightPalette() {
 }
 
 function createColor(h, s, l) {
-  let hsl = `hsl(${h} ${s} ${l})`
+  let hsl = `hsl(${h}, ${s}%, ${l}%)`
   return hsl
 }
 
