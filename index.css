@@ -150,4 +150,8 @@ i {
     display: flex;
   }
 
+  nav {
+    justify-content: space-around;
+  }
+
 }
