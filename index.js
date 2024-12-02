@@ -180,11 +180,11 @@ function generateDarkPalette() {
   //Color one
   let h = Math.floor(Math.random() * 360);
   let s = Math.floor(Math.random() * 80);
-  let l = 8;
+  let l = 7;
   palette.bgOne = createColor(h, s, l);
 
   //Color two
-  l = 12;
+  l = 15;
   palette.bgTwo = createColor(h, s, l);
 
   //Accent
