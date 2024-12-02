@@ -120,3 +120,34 @@ i {
   line-height: 1em;
   font-family: Arial, sans-serif;
 }
+
+#helpIconUp {
+  display: none;
+}
+
+#helpIconLeft {
+  display: flex;
+}
+
+@media screen and (max-width: 500px) {
+  #buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  button {
+    font-size: medium;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  #helpIconLeft {
+    display: none;
+  }
+
+  #helpIconUp {
+    display: flex;
+  }
+
+}

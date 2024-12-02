@@ -20,7 +20,8 @@ const navBar = document.querySelector('nav');
 const footer = document.querySelector('footer');
 const icons = document.querySelectorAll('.i');
 
-const helpIcon = document.querySelector('#helpIcon');
+const helpIconLeft = document.querySelector('#helpIconLeft');
+const helpIconUp = document.querySelector('#helpIconUp');
 helpText = document.querySelector('#help');
 
 //Query selectors end-----------------------------------------------------------
@@ -218,7 +219,8 @@ function applyColors() {
   p.forEach(element => element.style.color = `${palette.pFont}`);
   navBar.style.backgroundColor = `${palette.bgTwo}`;
   footer.style.backgroundColor = `${palette.bgTwo}`;
-  helpIcon.style.color = `${palette.pFont}`;
+  helpIconLeft.style.color = `${palette.pFont}`;
+  helpIconUp.style.color = `${palette.pFont}`;
   helpText.style.color = `${palette.pFont}`;
 }
 
