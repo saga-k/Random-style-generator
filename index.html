@@ -13,71 +13,163 @@
   <link rel="stylesheet" id="hFontLink">
   <link rel="stylesheet" id="pFontLink">
 
+  <script src="https://kit.fontawesome.com/07ed0a9c11.js" crossorigin="anonymous"></script>
+
 </head>
 
-<body>
-  <main>
+<body class="body">
+
+  <nav>
+    <a class="p" href="#main">Home</a>
+    <a class="p" href="#process">Process</a>
+    <a class="p" href="#contact">Contact</a>
+  </nav>
+
+
+  <main id="main">
     <article id="hero">
-      <h1 class="h">This is a demo of the random
-        style generator</h1>
-      <p>The inspiration for this project came from an idea i had for my portfolio website.
-        I wanted to create about 10 different stylesheets and loop through them at the click of a button.
-        However, i realized i wanted to spend more time coding than designing.
-        So i decided to try to generate some random styles dynamically.
-        Some might turn out good, some might turn out really ugly.
-        If you find something you like, you can download the css.
+      <h1 class="h">Building Style Guides with Randomness</h1>
+
+      <p class="p">
+        This project explores whether a blueprint for crafting effective style
+        guides, developed through years of design experience, can be translated into code.
+        The result is a tool that randomly generates unique starting points for style guides, complete
+        with fonts, colors, and theme variations. Each refresh reveals a new combination
       </p>
-      <button>Generate new</button>
-      <button>Reset</button>
+      <p class="p">
+        Some work great, others don't.
+        If you at any point find yourself unable to read the information on this page,
+        please generate a new style by clicking the button below.
+      </p>
+
+
+      <div id="buttons">
+        <button id="generate">Generate new</button>
+        <i class="fa-solid fa-arrow-left" id="helpIcon"></i>
+        <p id="help">Click here if you can't read the text.</p>
+      </div>
     </article>
 
-    <article id="myProcess">
-      <h2 class="h">My process</h2>
+    <article id="whyICreatedThisTool">
+      <h2 class="h">Why I Created This Tool</h2>
+      <p class="p">As a graphic designer, I’ve spent years refining the
+        process of building functional and cohesive style guides.
+        When I began this project, I was curious to see if my approach
+        could be distilled into code.
+      </p>
 
-      <div id="cards">
+      <p class="p">
+        The tool doesn't generate entire layouts but focuses on key foundational
+        elements: fonts and colors. It serves as a demonstration of how design principles can inform development.
+      </p>
 
-        <section class="card" id="boundaries">
-          <h3 class="h">Setting some boundaries</h3>
-          <p>Because i want you reading this to be able to read it.
-            I had to set some boundaries around which combinatons are allowed.
-            As a designer i have some i have some experience around what works and what doesnt when it comes to
-            readability.</p>
+      <p class="p">
+        The randomization isn’t arbitrary—it’s guided by principles I’ve used to create successful style guides.
+        The goal was to ensure every combination feels intentional, even when generated programmatically.
+      </p>
+    </article>
+
+    <article>
+      <h2 class="h" id="process">Behind the generator</h2>
+      <h3 class="h">Font Selection</h3>
+
+      <div class="cards">
+
+        <section class="card" id="fontFetch">
+          <h4 class="h">Using the Google Fonts API</h4>
+          <p class="p">
+            Fonts are fetched from the Google Fonts API, which
+            provides a complete list of the entire Google
+            Fonts library.</p>
         </section>
 
-        <section class="card" id="lightOrDark">
-          <h3 class="h">Light or dark</h3>
-          <p>To avoid getting dark text on a dark background or vice versa i wanted my program to first select a light
-            mode
-            or a dark mode. </p>
+        <section class="card" id="headingSelection">
+          <h4 class="h">Random Heading Font</h4>
+          <p class="p">
+            Since a heading font can have a bit more flair than a paragraph font and still be readable,
+            I decided not to place any restrictions on which fonts could be used for the headings.
+            The font is selected randomly from the entire font library.</p>
         </section>
 
-        <section class="card" id="colorPallate">
-          <h3 class="h">Creating a color pallate</h3>
-          <p>For a color pallate i want 2 background colors of the same hue but with different lightness.
-            I also want a more saturated color for details such as buttons, icons and other elements.
-            By using HSL values when generating the pallate i can control the saturation and lightness while letting
-            the
-            hue
-            be randomly generated</p>
-        </section>
-
-
-        <section class="card" id="fonts">
-          <h3 class="h">Adding fonts</h3>
-          <p>By using the google fonts API i can acces the entire
-            google fonts library and fetch anyfonts from there.
-            For readability i'll only allow p elements to be serif or sans serif fonts.
-            For headlines, i'll allow any font.
+        <section class="card" id="paragraphSelection">
+          <h4 class="h">Filtered Paragraph Font</h4>
+          <p class="p">
+            Each paragraph font is selected from a filtered array containing only serif and sans-serif fonts.
+            This ensures some level of readabiliy. However, some of these work better than others. In my opinion, some
+            of
+            Googles serif and sans-serif fonts would be better categorised as display fonts.
           </p>
         </section>
+
+
+        <section class="card" id="headingSelection">
+          <h4 class="h">Loading Fonts Dynamically</h4>
+          <p class="p">
+            In my HTML document, I have 2 link elements without src values. Using a regex, I transformed the selected
+            font names into a format that fits Google Fonts URLs and then set the src value for each link element. </p>
+        </section>
+
+      </div>
+    </article>
+
+    <article>
+      <h3 class="h">Color Palette</h3>
+      <p class="p">The generator creates color palettes using HSL values to control lightness and saturation
+        while
+        keeping the hues random:</p>
+
+      <div class="cards">
+
+        <section class="card" id="lightOrDark">
+          <h4 class="h">Dark or Light Mode</h4>
+          <p class="p">
+            To avoid dark text on a dark background or vice versa I first let the program decide weither to use a ligt
+            or dark theme. </p>
+        </section>
+
+        <section class="card" id="backgroundColors">
+          <h4 class="h">Background Colors</h4>
+          <p class="p">
+            Two shades of the same hue but with different lighness are selected to create depth. </p>
+        </section>
+
+        <section class="card" id="accentColor">
+          <h4 class="h">Accent Color</h4>
+          <p class="p">
+            A bold, saturated color serves as the focal point of the design.
+            The color has a min/max range in lightness and saturation while the hue can be selected from the full range
+            of values.
+          </p>
+        </section>
+
+
+        <section class="card" id="textColors">
+          <h4 class="h">Text Colors</h4>
+          <p class="p">
+            Text colors have the same hue values as the accent color but have a more narrow span in the lighness and
+            saturation values.
+            The h-elements range is a bit broader while the p-elements are designed to be nearly white or nearly black.
+          </p>
+        </section>
+
       </div>
 
     </article>
 
   </main>
-  </article>
+
+  <footer id="contact">
+    <p class="p">Contact</p>
+    <div id="links">
+      <a target="_blank" href=" https://github.com/saga-k"><i class="fa-brands fa-github i"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/in/sagakrusell/"><i class="fa-brands fa-linkedin i"></i></a>
+      <a href="mailto: sagakrusell@gmail.com"><i class="fa-solid fa-envelope i"></i></a>
+    </div>
+  </footer>
+
 
   <script src="index.js"></script>
+
 </body>
 
 </html>

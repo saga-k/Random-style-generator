@@ -6,15 +6,25 @@ const apiKey = 'AIzaSyBbbs2BCwpGxotzbHMt0AHAm6yGkBfSwig'
 const h = document.querySelectorAll('.h');
 const hFontLink = document.querySelector('#hFontLink');
 
-const p = document.querySelectorAll('p');
+const p = document.querySelectorAll('.p');
 const pFontLink = document.querySelector('#pFontLink');
 
+
 const button = document.querySelectorAll('button');
-const body = document.querySelector('body');
+const body = document.querySelector('.body');
 const card = document.querySelectorAll('.card');
 
-//Query selectors end-----------------------------------------------------------
+const generateButton = document.querySelector('#generate');
 
+const navBar = document.querySelector('nav');
+
+const footer = document.querySelector('footer');
+const icons = document.querySelectorAll('.i');
+
+const helpIcon = document.querySelector('#helpIcon');
+helpText = document.querySelector('#help');
+
+//Query selectors end-----------------------------------------------------------
 
 
 //Fonts start-------------------------------------------------------------------
@@ -26,7 +36,9 @@ async function getFonts() {
     const response = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&subset=latin`)
     const result = await response.json()
     const fontList = result.items;
+    console.log(fontList);
     return fontList
+
   }
   catch (error) {
     console.error(error)
@@ -79,17 +91,15 @@ async function setFonts() {
 
 //Display selected fonts on page end-----------------------------
 
-
-setFonts() //Function call for fonts
-
-
 //Fonts end---------------------------------------------------------------------
 
 
 
 //Colors start------------------------------------------------------------------
-let theme = '';
-lightOrDark()
+let theme;
+let palette;
+
+//Light or rark mode start---------------------------------------
 
 function lightOrDark() {
   if (Math.random() < 0.5) {
@@ -97,17 +107,17 @@ function lightOrDark() {
   } else {
     theme = 'dark'
   }
-}
 
-class Colors {
-  constructor(theme, h, s) {
-    this.theme = theme
-    this.h = h
-    this.s = s
-    if (this.theme = 'light') {
-    }
+  if (theme === 'light') {
+    palette = generateLightPalette();
+  } else {
+    palette = generateDarkPalette();
   }
 }
+
+//Light or rark mode end-----------------------------------------
+
+
 //Generate light palette start ----------------------------------
 
 function generateLightPalette() {
@@ -136,12 +146,12 @@ function generateLightPalette() {
   palette.accent = createColor(h, s, l);
 
   //FontColor
-  h = Math.floor(Math.random() * 360);
+
   s = Math.floor(Math.random() * 101);
   l = Math.floor(Math.random() * (40 - 0) + 0);
   palette.hFont = createColor(h, s, l);
 
-  l = Math.floor(Math.random() * (10 - 0) + 0);
+  l = Math.floor(Math.random() * (5 - 0) + 0);
   palette.pFont = createColor(h, s, l);
 
   return palette;
@@ -174,7 +184,7 @@ function generateDarkPalette() {
   palette.bgOne = createColor(h, s, l);
 
   //Color two
-  l = 10;
+  l = 12;
   palette.bgTwo = createColor(h, s, l);
 
   //Accent
@@ -184,37 +194,50 @@ function generateDarkPalette() {
   palette.accent = createColor(h, s, l);
 
   //FontColors
-  h = Math.floor(Math.random() * 360);
+
   s = Math.floor(Math.random() * 101);
   l = Math.floor(Math.random() * (100 - 70) + 70);
   palette.hFont = createColor(h, s, l);
 
-  l = Math.floor(Math.random() * (100 - 80) + 80);
+  l = Math.floor(Math.random() * (100 - 95) + 95);
   palette.pFont = createColor(h, s, l);
 
   return palette;
 }
 
-
-
-
-
 //Generate dark palette end--------------------------------------
-let palette
 
-if (theme === 'light') {
-  palette = generateLightPalette();
-} else {
-  palette = generateDarkPalette();
-}
 
-applyColors()
-
+//Apply colors start---------------------------------------------
 
 function applyColors() {
   button.forEach(element => element.style.backgroundColor = `${palette.accent}`);
+  icons.forEach(element => element.style.color = `${palette.hFont}`);
   body.style.backgroundColor = palette.bgOne
   card.forEach(element => element.style.backgroundColor = `${palette.bgTwo}`);
-  h.forEach(element => element.style.color = `${palette.hFont}`)
-  p.forEach(element => element.style.color = `${palette.pFont}`)
+  h.forEach(element => element.style.color = `${palette.hFont}`);
+  p.forEach(element => element.style.color = `${palette.pFont}`);
+  navBar.style.backgroundColor = `${palette.bgTwo}`;
+  footer.style.backgroundColor = `${palette.bgTwo}`;
+  helpIcon.style.color = `${palette.pFont}`;
+  helpText.style.color = `${palette.pFont}`;
 }
+
+//Initial function calls start--------------------------------------------------
+
+setFonts()
+lightOrDark()
+applyColors()
+
+//Initial function calls end--------------------------------------------------
+
+
+//Eventlisteners start----------------------------------------------------------
+
+generateButton.addEventListener('click', () => {
+  setFonts()
+  lightOrDark()
+  applyColors()
+})
+
+//Eventlisteners end -----------------------------------------------------------
